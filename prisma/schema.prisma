@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  role          Role      @default(CLIENT)
+  meals         Meal[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  emailVerified Boolean   @default(false)
+  image         String?
+  mobile        String?
+  sessions      Session[]
+  accounts      Account[]
+
+  @@map("user")
+}
+
+enum Role {
+  ADMIN
+  CLIENT
+}
+
+model Food {
+  id               String            @id @default(uuid())
+  name             String
+  calories         Float?
+  protein          Float?
+  fat              Float?
+  carbohydrates    Float?
+  fiber            Float?
+  sugar            Float?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  Category         Category?         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId       String?
+  foodServingUnits FoodServingUnit[]
+  meal             Meal?             @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  mealId           String?
+  mealFoods        MealFood[]
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  foods     Food[]
+}
+
+model ServingUnit {
+  id               String            @id @default(uuid())
+  name             String            @unique
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  foodServingUnits FoodServingUnit[]
+  mealFoods        MealFood[]
+}
+
+model FoodServingUnit {
+  id     String @id @default(uuid())
+  food   Food   @relation(fields: [foodId], references: [id])
+  foodId String
+
+  servingUnit   ServingUnit @relation(fields: [servingUnitId], references: [id], onDelete: Cascade)
+  servingUnitId String
+
+  grams     Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("FoodServingUnit")
+}
+
+model Meal {
+  id        String     @id @default(uuid())
+  dateTime  DateTime
+  foods     Food[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  mealFoods MealFood[]
+}
+
+model MealFood {
+  id     String @id @default(uuid())
+  food   Food   @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  foodId String
+
+  meal   Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  mealId String
+
+  servingUnit   ServingUnit @relation(fields: [servingUnitId], references: [id], onDelete: Cascade)
+  servingUnitId String
+  amount        Float
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("verification")
+}
+model Test{
+  id String @id @default(uuid())
+  name String
+  details String
+}
