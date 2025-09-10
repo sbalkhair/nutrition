@@ -24,3 +24,8 @@ export const loginSchema = z.object({
   email: z.email({ message: "Email is Required" }),
   password: z.string().min(1, { message: "Password is Required" }),
 });
+
+export const categorySchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(1, { error: "Name is require" }),
+});
