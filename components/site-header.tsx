@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useSignout } from "@/hooks/use-signout";
+import { LogOut } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 
 export function SiteHeader() {
@@ -19,7 +20,9 @@ export function SiteHeader() {
           <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
             <ModeToggle />
           </Button>
-          <Button onClick={useSignout()}>Logout</Button>
+          <Button variant="outline" onClick={useSignout()}>
+            <LogOut />
+          </Button>
         </div>
       </div>
     </header>
