@@ -122,7 +122,13 @@
   a {
     @apply cursor-pointer;
   }
+  h1 {
+    @apply text-2xl font-bold capitalize;
+  }
+  th {
+    @apply bg-slate-50;
+  }
   button {
-    @apply cursor-pointer;
+    @apply cursor-pointer uppercase;
   }
 }
