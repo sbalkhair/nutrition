@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+import { loginSchema, type LoginSchemaType } from "@/lib/schemas";
 import { cn } from "@/lib/utils";
-import { loginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -26,20 +26,19 @@ import { redirect } from "next/navigation";
 import { useTransition, type ComponentProps } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import z from "zod";
 import HeaderAuthForm from "./header-auth-form";
 
 export function LoginForm({ className, ...props }: ComponentProps<"div">) {
   const [isPending, startTransition] = useTransition();
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: "",
+      password: "12345678",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
+  const onSubmit = (values: LoginSchemaType) => {
     startTransition(async () => {
       await authClient.signIn.email(
         {

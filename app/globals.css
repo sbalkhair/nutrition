@@ -126,9 +126,22 @@
     @apply text-2xl font-bold capitalize;
   }
   th {
-    @apply bg-slate-50;
+    @apply bg-slate-50 dark:bg-slate-700;
   }
+  td {
+    @apply text-center;
+  }
+
   button {
-    @apply cursor-pointer uppercase;
+    @apply cursor-pointer;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

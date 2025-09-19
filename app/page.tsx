@@ -1,4 +1,4 @@
-import { redirectUser as routingLoginUser } from "@/app/data/shared/redirect-login-user";
+import { redirectUser as routingLoginUser } from "@/app/(dashboard)/shared/redirect-login-user";
 import AppIcon from "@/components/app-icon";
 import { buttonVariants } from "@/components/ui/button";
 import { Application } from "@/lib/constant";

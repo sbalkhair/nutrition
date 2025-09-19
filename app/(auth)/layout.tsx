@@ -1,4 +1,4 @@
-const layout = ({ children }: LayoutProps<"/admin">) => {
+const layout = ({ children }: LayoutProps<"/">) => {
   return <div>{children}</div>;
 };
 

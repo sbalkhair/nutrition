@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+import { registerAccountSchema, type RegisterSchemaType } from "@/lib/schemas";
 import { cn } from "@/lib/utils";
-import { registerAccountSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -27,13 +27,12 @@ import { redirect } from "next/navigation";
 import { useTransition, type ComponentProps } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import z from "zod";
 import HeaderAuthForm from "./header-auth-form";
 
 export function RegisterForm({ className, ...props }: ComponentProps<"div">) {
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof registerAccountSchema>>({
+  const form = useForm<RegisterSchemaType>({
     resolver: zodResolver(registerAccountSchema),
     defaultValues: {
       name: "",
@@ -50,12 +49,12 @@ export function RegisterForm({ className, ...props }: ComponentProps<"div">) {
     password,
     name,
     mobile,
-  }: z.infer<typeof registerAccountSchema>) {
+  }: RegisterSchemaType) {
     startTransition(async () => {
       await authClient.signUp.email(
         { email, password, mobile, name, callbackURL: "/client" },
         {
-          onSuccess: (ctx) => {
+          onSuccess: () => {
             toast.success("Success register new user");
             redirect("/client");
           },
