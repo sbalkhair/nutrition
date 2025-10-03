@@ -27,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ResponsiveRow } from "@/lib/responsive-row";
 import { MealSchemaType, mealSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, PlusCircle, Trash2 } from "lucide-react";
@@ -144,100 +145,110 @@ const ButtonAddMeal = ({
                     );
 
                     return (
-                      <div key={field.id} className="flex items-end gap-3">
-                        <FormField
-                          control={form.control}
-                          name={`mealFoods.${index}.foodId`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Food</FormLabel>
-                              <FormControl>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  value={field.value}
-                                >
-                                  <SelectTrigger className="w-[150px]">
-                                    <SelectValue placeholder="Select Food" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {foods.map((food) => (
-                                      <SelectItem
-                                        key={food.id}
-                                        value={food.id}
-                                      >
-                                        {food.name}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name={`mealFoods.${index}.servingUnitId`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Unit</FormLabel>
-                              <FormControl>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  value={field.value}
-                                >
-                                  <SelectTrigger className="">
-                                    <SelectValue placeholder="Select Unit" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {(filteredServingUnits.length > 0
-                                      ? filteredServingUnits
-                                      : servingUnits
-                                    ).map((unit) => (
-                                      <SelectItem
-                                        key={unit.id}
-                                        value={unit.id}
-                                      >
-                                        {unit.name}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name={`mealFoods.${index}.amount`}
-                          render={({ field }) => (
-                            <FormItem className="">
-                              <FormLabel>Amount</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="number"
-                                  {...field}
-                                  onChange={(e) =>
-                                    field.onChange(Number(e.target.value))
-                                  }
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <Button
-                          type="button"
-                          variant="destructive"
-                          size="icon"
-                          onClick={() => remove(index)}
+                      <div
+                        key={field.id}
+                        className="rounded-2xl border bg-slate-50/80 p-4 dark:bg-slate-50/10"
+                      >
+                        <ResponsiveRow
+                          gridCols="sm:grid-cols-[1fr_1fr_80px_auto]"
+                          className="items-end"
                         >
-                          <Trash2 />
-                        </Button>
+                          <FormField
+                            control={form.control}
+                            name={`mealFoods.${index}.foodId`}
+                            render={({ field }) => (
+                              <FormItem className="w-full">
+                                <FormLabel>Food</FormLabel>
+                                <FormControl>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                  >
+                                    <SelectTrigger className="w-full">
+                                      <SelectValue placeholder="Select Food" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {foods.map((food) => (
+                                        <SelectItem
+                                          key={food.id}
+                                          value={food.id}
+                                        >
+                                          {food.name}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name={`mealFoods.${index}.servingUnitId`}
+                            render={({ field }) => (
+                              <FormItem className="w-full">
+                                <FormLabel>Unit</FormLabel>
+                                <FormControl>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                  >
+                                    <SelectTrigger className="w-full">
+                                      <SelectValue placeholder="Select Unit" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {(filteredServingUnits.length > 0
+                                        ? filteredServingUnits
+                                        : servingUnits
+                                      ).map((unit) => (
+                                        <SelectItem
+                                          key={unit.id}
+                                          value={unit.id}
+                                        >
+                                          {unit.name}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name={`mealFoods.${index}.amount`}
+                            render={({ field }) => (
+                              <FormItem className="">
+                                <FormLabel>Amount</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="number"
+                                    {...field}
+                                    onChange={(e) =>
+                                      field.onChange(Number(e.target.value))
+                                    }
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <div className="flex items-end">
+                            <Button
+                              onClick={() => remove(index)}
+                              type="button"
+                              variant="destructive"
+                              className="w-full"
+                            >
+                              <Trash2 />
+                            </Button>
+                          </div>
+                        </ResponsiveRow>
                       </div>
                     );
                   })}

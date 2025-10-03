@@ -1,4 +1,4 @@
-import { SectionCards } from "@/components/section-cards";
+import { SectionCards } from "@/app/(dashboard)/admin/_component/section-cards";
 
 import { requireUser } from "@/app/(dashboard)/shared/require-user";
 

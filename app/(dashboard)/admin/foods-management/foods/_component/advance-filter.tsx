@@ -75,7 +75,7 @@ const AdvanceFilter = ({
           <IconFilter2 className="text-primary" /> Advance Filter
         </Button>
       </SheetTrigger>
-      <SheetContent className="p-10">
+      <SheetContent className="p-4 sm:p-10">
         <SheetHeader>
           <SheetTitle>Advance Fitter</SheetTitle>
           <SheetDescription>
@@ -133,11 +133,11 @@ const AdvanceFilter = ({
                         />
 
                         {/* Inputs for min & max */}
-                        <div className="flex items-center justify-between gap-7">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-7">
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Min</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -153,7 +153,7 @@ const AdvanceFilter = ({
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Max</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -189,11 +189,11 @@ const AdvanceFilter = ({
                           step={1}
                         />
 
-                        <div className="flex items-center justify-between gap-7">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-7">
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Min</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -209,7 +209,7 @@ const AdvanceFilter = ({
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Max</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -245,11 +245,11 @@ const AdvanceFilter = ({
                           step={1}
                         />
 
-                        <div className="flex items-center justify-between gap-7">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-7">
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Min</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -265,7 +265,7 @@ const AdvanceFilter = ({
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Max</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -301,11 +301,11 @@ const AdvanceFilter = ({
                           step={1}
                         />
 
-                        <div className="flex items-center justify-between gap-7">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-7">
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Min</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -321,7 +321,7 @@ const AdvanceFilter = ({
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Max</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -357,11 +357,11 @@ const AdvanceFilter = ({
                           step={1}
                         />
 
-                        <div className="flex items-center justify-between gap-7">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-7">
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Min</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -377,7 +377,7 @@ const AdvanceFilter = ({
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Max</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -414,11 +414,11 @@ const AdvanceFilter = ({
                           step={1}
                         />
 
-                        <div className="flex items-center justify-between gap-7">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-7">
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Min</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -434,7 +434,7 @@ const AdvanceFilter = ({
                           <div className="relative flex w-full items-center justify-between">
                             <Label className="absolute start-0 px-2">Max</Label>
                             <Input
-                              className="w-32 text-end"
+                              className="w-full px-2 text-end"
                               type="number"
                               min={0}
                               max={9999}
@@ -466,9 +466,10 @@ const AdvanceFilter = ({
                   Cancel
                 </Button>
                 <Button
-                  variant="outline"
-                  type="reset"
-                  onClick={() => {
+                  variant   = "secondary"
+                  className = "border"
+                  type      = "reset"
+                  onClick   = {() => {
                     onReset();
                     form.reset();
                     setOpen(true);
