@@ -11,20 +11,10 @@ import { Flame, Timer, UtensilsCrossed } from "lucide-react";
 import type { MealsType } from "../data/get-meals";
 
 import { useRouter } from "next/navigation";
-import type { FoodType } from "../../admin/foods-management/foods/data/get-foods";
-import type { ServingUnitType } from "../../admin/foods-management/serving-units/data/get-serving-units";
 import ButtonDeleteMeal from "./button-delete-meal";
 import MealFoodItem from "./meal-food-item";
 
-const MyMeals = ({
-  meals,
-  foods,
-  servingUnits,
-}: {
-  meals: MealsType[];
-  foods: FoodType[];
-  servingUnits: ServingUnitType[];
-}) => {
+const MyMeals = ({ meals }: { meals: MealsType[] }) => {
   const router = useRouter();
   const handelRefreshMyMeal = () => {
     console.log("delete");

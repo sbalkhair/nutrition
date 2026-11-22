@@ -26,7 +26,7 @@ const RenderFoodsClientPage = async () => {
     <div className="flex flex-col space-y-6">
       <div className="flex items-center justify-between">
         <h1>Foods</h1>
-        <ButtonAddFood servingUnits={servingUnits} categories={categories} />
+        <ButtonAddFood categories={categories} />
       </div>
       <FoodsClientPage
         data={data}

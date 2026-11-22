@@ -258,7 +258,7 @@ const ClientFilterMeal = ({
       </div>
 
       <div className="space-y-6">
-        <MyMeals meals={meals} foods={foods} servingUnits={servingUnits} />
+        <MyMeals meals={meals} />
       </div>
     </div>
   );

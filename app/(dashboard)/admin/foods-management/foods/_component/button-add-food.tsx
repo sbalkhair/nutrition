@@ -37,13 +37,7 @@ import { useState, useTransition } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const ButtonAddFood = ({
-  servingUnits,
-  categories,
-}: {
-  servingUnits: { id: string; name: string }[];
-  categories: CategoryType[];
-}) => {
+const ButtonAddFood = ({ categories }: { categories: CategoryType[] }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
